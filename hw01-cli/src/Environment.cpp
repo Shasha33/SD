@@ -22,7 +22,8 @@ Environment::Environment()
           externalExecutor(new ExternalExecutor()),
           emptyExecutor(new EmptyExecutor()),
           grepExecutor(new GrepExecutor()),
-          lsExecutor(new LSExecutor()) {
+          lsExecutor(new LSExecutor()),
+          cdExecutor(new CDExecutor()) {
     factory.registerExecutor(CommandName("echo"), echoExecutor);
     factory.registerExecutor(CommandName("exit"), exitExecutor);
     factory.registerExecutor(CommandName("cat"), catExecutor);
@@ -31,6 +32,7 @@ Environment::Environment()
     factory.registerExecutor(CommandName(""), emptyExecutor);
     factory.registerExecutor(CommandName("grep"), grepExecutor);
     factory.registerExecutor(CommandName("ls"), lsExecutor);
+    factory.registerExecutor(CommandName("cd"), cdExecutor);
 }
 
 void Environment::setVariableValue(const std::string &variableName, const std::string &variableValue) {

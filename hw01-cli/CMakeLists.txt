@@ -47,6 +47,9 @@ add_library(
         src/executors/LSExecutor.cpp
         includes/executors/LSExecutor.h
 
+        src/executors/CDExecutor.cpp
+        includes/executors/CDExecutor.h
+
         src/executors/grep/GrepExecutor.cpp
         includes/executors/grep/GrepExecutor.h
 

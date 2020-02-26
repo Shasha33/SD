@@ -35,7 +35,7 @@ add_executable(
         executors/LSExecutorTest.cpp
 
         processors/LoopProcessorTest.cpp
-)
+        executors/CDExecutorTest.cpp)
 
 target_link_libraries(
         hw01_cli_tests

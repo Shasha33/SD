@@ -10,6 +10,7 @@ public:
 
     std::string getHome() const;
     void changeCurrentDirectory(std::string dir);
+    void changeCurrentDirectoryToHome();
     std::string getCurrentDirectory() const;
 
 private:

@@ -19,7 +19,7 @@ Status LSExecutor::execute(
             printOneDirectory(argument.asString(), outputStream);
         }
     } else {
-        const std::string currentDirectory = command.getFileTreeState().getCurrentDirectory();
+        const std::string currentDirectory = command.getFileTreeState()->getCurrentDirectory();
         printOneDirectory(currentDirectory, outputStream);
     }
 

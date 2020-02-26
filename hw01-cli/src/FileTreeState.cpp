@@ -14,15 +14,19 @@ FileTreeState::FileTreeState() : homeDirectory(".") {}
 
 
 void FileTreeState::changeCurrentDirectory(std::string dir) {
+    if (currentDirectory.back() != '/') {
+        currentDirectory += '/';
+    }
+
     if (dir[0] == '/') {
         currentDirectory = dir;
     } else {
         currentDirectory += dir;
     }
-
-    if (currentDirectory.back() != '/') {
-        currentDirectory += '/';
-    }
 }
 
 FileTreeState::FileTreeState(std::string home) : homeDirectory(std::move(home)) {}
+
+void FileTreeState::changeCurrentDirectoryToHome() {
+    currentDirectory = homeDirectory;
+}
