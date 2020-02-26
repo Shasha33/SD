@@ -32,6 +32,7 @@ add_executable(
         executors/WCExecutorTest.cpp
         executors/grep/GrepExecutorTest.cpp
         executors/grep/GrepArgumentsTest.cpp
+        executors/LSExecutorTest.cpp
 
         processors/LoopProcessorTest.cpp
 )
