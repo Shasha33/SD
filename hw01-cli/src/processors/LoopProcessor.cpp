@@ -1,4 +1,5 @@
 #include <processors/LoopProcessor.h>
+#include "FileTreeState.h"
 #include <commands/CommandBuilder.h>
 #include <tokenizers/LinearTokenizer.h>
 #include <Substitutor.h>
@@ -11,7 +12,8 @@ Response LoopProcessor::process(
     tokenizer->clear();
     tokenizer->append(s);
 
-    CommandBuilder commandBuilder;
+    FileTreeState fileTreeState;
+    CommandBuilder commandBuilder(&fileTreeState);
     Status lastCommandStatus;
     StringChannel inputChannel, outputChannel;
 

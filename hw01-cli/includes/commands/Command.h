@@ -3,6 +3,7 @@
 
 #include <commands/CommandName.h>
 #include <commands/CommandArguments.h>
+#include <FileTreeState.h>
 
 // Entity for representing command.
 // It has a name and arguments.
@@ -13,12 +14,20 @@ public:
 
     Command(
             const CommandName &commandName,
+            const CommandArguments &commandArguments,
+            FileTreeState* fileTreeState
+    );
+
+    Command(
+            const CommandName &commandName,
             const CommandArguments &commandArguments
     );
 
     const CommandName &getCommandName() const;
 
     const CommandArguments &getCommandArguments() const;
+
+    const FileTreeState& getFileTreeState() const;
 
     // Concatenates command name and command arguments
     // string representations and returns concatenation.
@@ -27,6 +36,7 @@ public:
 private:
     CommandName commandName;
     CommandArguments commandArguments;
+    FileTreeState* fileTreeState = nullptr;
 };
 
 

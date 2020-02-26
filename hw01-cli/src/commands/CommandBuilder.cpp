@@ -3,6 +3,8 @@
 #include <assert.h>
 #include <algorithm>
 
+CommandBuilder::CommandBuilder(FileTreeState* fileTreeState) : fileTreeState(fileTreeState) {}
+
 void CommandBuilder::appendToken(const Token &token) {
     if (!token.empty()
         && !(tokens.empty() && token.getTokenType() != TokenType::LITERAL)) {
@@ -20,7 +22,8 @@ Command CommandBuilder::buildCommand() const {
     }
     return Command(
             CommandName(tokens.front().asString()),
-            CommandArguments(std::vector<Token>(tokens.begin() + 1, tokens.end()))
+            CommandArguments(std::vector<Token>(tokens.begin() + 1, tokens.end())),
+            fileTreeState
     );
 }
 

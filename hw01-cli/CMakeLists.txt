@@ -44,6 +44,9 @@ add_library(
         src/executors/EmptyExecutor.cpp
         includes/executors/EmptyExecutor.h
 
+        src/executors/LSExecutor.cpp
+        includes/executors/LSExecutor.h
+
         src/executors/grep/GrepExecutor.cpp
         includes/executors/grep/GrepExecutor.h
 
@@ -74,6 +77,9 @@ add_library(
 
         src/commands/CommandBuilder.cpp
         includes/commands/CommandBuilder.h
+
+        src/FileTreeState.cpp
+        includes/FileTreeState.h
 
         #       ========================
         includes/tokenizers/ITokenizer.h

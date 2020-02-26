@@ -16,6 +16,7 @@
 #include <executors/ExternalExecutor.h>
 #include <executors/EmptyExecutor.h>
 #include <executors/grep/GrepExecutor.h>
+#include <executors/LSExecutor.h>
 
 // Entity for storing inner shell variables and
 // command which are implemented in shell
@@ -50,6 +51,7 @@ private:
     ExternalExecutor *externalExecutor;
     EmptyExecutor *emptyExecutor;
     GrepExecutor *grepExecutor;
+    LSExecutor *lsExecutor;
 };
 
 #endif //HW01_CLI_ENVIRONMENT_H

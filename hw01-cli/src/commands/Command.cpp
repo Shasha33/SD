@@ -8,11 +8,21 @@ const CommandArguments &Command::getCommandArguments() const {
     return commandArguments;
 }
 
+const FileTreeState &Command::getFileTreeState() const {
+    return *fileTreeState;
+}
+
 Command::Command(
         const CommandName &commandName,
-        const CommandArguments &commandArguments
-) : commandName(commandName), commandArguments(commandArguments) {}
+        const CommandArguments &commandArguments,
+        FileTreeState *fileTreeState
+) : commandName(commandName), commandArguments(commandArguments), fileTreeState(fileTreeState) {}
 
 std::string Command::asString() const {
     return getCommandName().getName() + getCommandArguments().asString();
 }
+
+Command::Command(
+        const CommandName &commandName,
+        const CommandArguments &commandArguments
+) : commandName(commandName), commandArguments(commandArguments) {}
