@@ -3,6 +3,8 @@
 
 #include <string>
 
+/// Stores current position in file tree and initial home path
+/// Default home is .
 class FileTreeState {
 public:
     FileTreeState();

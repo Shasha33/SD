@@ -4,11 +4,13 @@
 #include <experimental/filesystem>
 #include <executors/ICommandExecutor.h>
 
-// Implementation of ls command
+/// Implementation of ls command
+/*
+ *  Prints given directory or current directory into
+ *  output channel
+ */
 class LSExecutor : public ICommandExecutor {
 public:
-    // Prints given directory or current directory into
-    // output channel
     Status execute(
             const Command &command,
             StringChannel &inputStream,
