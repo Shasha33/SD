@@ -1,4 +1,5 @@
 #include <boost/test/unit_test.hpp>
+#include <boost/algorithm/string.hpp>
 #include <executors/LSExecutor.h>
 #include <experimental/filesystem>
 BOOST_AUTO_TEST_SUITE(LSExecutorSuite)
@@ -17,7 +18,16 @@ BOOST_AUTO_TEST_SUITE(LSExecutorSuite)
 
         BOOST_CHECK_EQUAL(0, status.getExitCode());
 
-        BOOST_CHECK_EQUAL("./ls_test_temp_dir:\n./ls_test_temp_dir/3\n./ls_test_temp_dir/1\n", outputChannel.read());
+        std::set<std::string> lines{"./ls_test_temp_dir:", "./ls_test_temp_dir/3", "./ls_test_temp_dir/1"};
+        std::set<std::string> true_lines;
+        std::stringstream ss(outputChannel.read());
+        std::string current_line;
+        while (ss >> current_line) {
+            true_lines.insert(current_line);
+        }
+        BOOST_CHECK_EQUAL(3, true_lines.size());
+
+        BOOST_TEST(lines == true_lines,  boost::test_tools::per_element());
         std::experimental::filesystem::remove_all("ls_test_temp_dir/1/2");
         std::experimental::filesystem::remove_all("ls_test_temp_dir/3");
     }
