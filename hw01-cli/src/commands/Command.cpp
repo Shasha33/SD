@@ -8,7 +8,7 @@ const CommandArguments &Command::getCommandArguments() const {
     return commandArguments;
 }
 
-const FileTreeState* Command::getFileTreeState() const {
+FileTreeState* Command::getFileTreeState() const {
     return fileTreeState;
 }
 

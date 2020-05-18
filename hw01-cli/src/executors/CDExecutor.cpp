@@ -1,21 +1,23 @@
 #include <executors/CDExecutor.h>
-#include <iostream>
 
 Status CDExecutor::execute(const Command &command, StringChannel &inputStream, StringChannel &outputStream) const {
     const CommandArguments &commandArguments = command.getCommandArguments();
     int argumentsCount = commandArguments.countTokensWithType(TokenType::LITERAL);
-    FileTreeState *fileTreeState = const_cast<FileTreeState *>(command.getFileTreeState());
-    if (argumentsCount > 0) {
+    auto status = Status();
+    if (argumentsCount > 1) {
+        status.setExitCode(-1);
+        status.setMessage("too many arguments for cd");
+    } else if (argumentsCount == 1) {
         for (auto argument : commandArguments.asTokensVector())
         {
-            outputStream.write(argument.asString() + "\n");
             if (argument.getTokenType() == TokenType::LITERAL) {
-                fileTreeState->changeCurrentDirectory(argument.asString());
+                command.getFileTreeState()->changeCurrentDirectory(argument.asString());
                 break;
             }
         }
-    } else {
-        fileTreeState->changeCurrentDirectoryToHome();
+    }
+    else {
+        command.getFileTreeState()->changeCurrentDirectoryToHome();
     }
     return Status();
 }

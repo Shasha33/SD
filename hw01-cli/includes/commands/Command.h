@@ -27,7 +27,7 @@ public:
 
     const CommandArguments &getCommandArguments() const;
 
-    const FileTreeState* getFileTreeState() const;
+    FileTreeState* getFileTreeState() const;
 
     // Concatenates command name and command arguments
     // string representations and returns concatenation.
