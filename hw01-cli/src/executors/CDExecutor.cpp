@@ -1,4 +1,6 @@
 #include <executors/CDExecutor.h>
+#include <filesystem>
+namespace fs = std::filesystem;
 
 Status CDExecutor::execute(const Command &command, StringChannel &inputStream, StringChannel &outputStream) const {
     const CommandArguments &commandArguments = command.getCommandArguments();
@@ -12,6 +14,16 @@ Status CDExecutor::execute(const Command &command, StringChannel &inputStream, S
         {
             if (argument.getTokenType() == TokenType::LITERAL) {
                 command.getFileTreeState()->changeCurrentDirectory(argument.asString());
+
+                auto path = command.getFileTreeState()->getCurrentDirectory();
+                if (!fs::exists(path)) {
+                    status.setExitCode(-1);
+                    status.setMessage("the directory does not exist");
+                } else if (!fs::is_directory(path)) {
+                    status.setExitCode(-1);
+                    status.setMessage("the path does not match any directory");
+                }
+
                 break;
             }
         }
