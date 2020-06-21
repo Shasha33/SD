@@ -1,8 +1,6 @@
 #include "FileTreeState.h"
 
-#include <utility>
-
-std::string FileTreeState::getHome() const{
+std::string FileTreeState::getHome() const {
     return homeDirectory;
 }
 
@@ -13,7 +11,7 @@ std::string FileTreeState::getCurrentDirectory() const {
 FileTreeState::FileTreeState() : homeDirectory(".") {}
 
 
-void FileTreeState::changeCurrentDirectory(std::string dir) {
+void FileTreeState::changeCurrentDirectory(const std::string& dir) {
     if (currentDirectory.back() != '/') {
         currentDirectory += '/';
     }
@@ -25,7 +23,7 @@ void FileTreeState::changeCurrentDirectory(std::string dir) {
     }
 }
 
-FileTreeState::FileTreeState(std::string home) : homeDirectory(std::move(home)) {}
+FileTreeState::FileTreeState(const std::string& home) : homeDirectory(home) {}
 
 void FileTreeState::changeCurrentDirectoryToHome() {
     currentDirectory = homeDirectory;

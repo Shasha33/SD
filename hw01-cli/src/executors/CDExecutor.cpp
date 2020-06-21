@@ -31,5 +31,5 @@ Status CDExecutor::execute(const Command &command, StringChannel &inputStream, S
     else {
         command.getFileTreeState()->changeCurrentDirectoryToHome();
     }
-    return Status();
+    return status;
 }

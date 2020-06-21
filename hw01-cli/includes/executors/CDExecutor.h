@@ -4,8 +4,8 @@
 #include <experimental/filesystem>
 #include <executors/ICommandExecutor.h>
 
-/// Implementation of cd command
-/*
+/** Implementation of cd command
+ *
  * Changes current directory value to the argument
  * With empty args reverts current directory to home directory
  */

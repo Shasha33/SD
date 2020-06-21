@@ -8,10 +8,10 @@
 class FileTreeState {
 public:
     FileTreeState();
-    explicit FileTreeState(std::string home);
+    explicit FileTreeState(const std::string& home);
 
     std::string getHome() const;
-    void changeCurrentDirectory(std::string dir);
+    void changeCurrentDirectory(const std::string& dir);
     void changeCurrentDirectoryToHome();
     std::string getCurrentDirectory() const;
 
