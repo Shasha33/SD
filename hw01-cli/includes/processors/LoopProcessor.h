@@ -18,7 +18,8 @@ public:
     // in environmental variable '?'
     Response process(
             const std::string &s,
-            Environment &environment
+            Environment &environment,
+            FileTreeState& fileTreeState
     ) override;
 
     ~LoopProcessor() override;

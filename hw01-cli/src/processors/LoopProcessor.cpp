@@ -7,12 +7,12 @@
 
 Response LoopProcessor::process(
         const std::string &s,
-        Environment &environment
+        Environment &environment,
+        FileTreeState& fileTreeState
 ) {
     tokenizer->clear();
     tokenizer->append(s);
 
-    FileTreeState fileTreeState;
     CommandBuilder commandBuilder(&fileTreeState);
     Status lastCommandStatus;
     StringChannel inputChannel, outputChannel;
