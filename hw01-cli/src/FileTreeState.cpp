@@ -1,3 +1,4 @@
+#include <filesystem>
 #include "FileTreeState.h"
 
 std::string FileTreeState::getHome() const {
@@ -21,6 +22,8 @@ void FileTreeState::changeCurrentDirectory(const std::string& dir) {
     } else {
         currentDirectory += dir;
     }
+
+    currentDirectory = std::filesystem::relative(currentDirectory, homeDirectory);
 }
 
 FileTreeState::FileTreeState(const std::string& home) : homeDirectory(home) {}

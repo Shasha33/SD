@@ -1,3 +1,4 @@
+#include <filesystem>
 #include "executors/LSExecutor.h"
 
 Status LSExecutor::execute(
@@ -28,7 +29,9 @@ Status LSExecutor::execute(
 
 void LSExecutor::printOneDirectory(const std::experimental::filesystem::path& path, StringChannel &outputStream) const {
     outputStream.write(path.string() + ":\n");
-    for (const auto &entry : std::experimental::filesystem::directory_iterator(path))
-        outputStream.write(entry.path().string() + "\n");
+    for (const auto &entry : std::experimental::filesystem::directory_iterator(path)) {
+        auto filepath = std::filesystem::relative(entry.path().string(), path.string());
+        outputStream.write(filepath.string() + "\n");
+    }
 }
 
