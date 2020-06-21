@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_SUITE(CDExecutorSuite)
 
         BOOST_CHECK_EQUAL(0, status.getExitCode());
 
-        BOOST_CHECK_EQUAL("./ls_test_temp_dir/3", fileTreeState.getCurrentDirectory());
+        BOOST_CHECK_EQUAL("ls_test_temp_dir/3", fileTreeState.getCurrentDirectory());
         std::experimental::filesystem::remove_all("ls_test_temp_dir/3");
     }
 

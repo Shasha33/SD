@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_SUITE(LSExecutorSuite)
 
         BOOST_CHECK_EQUAL(0, status.getExitCode());
 
-        std::set<std::string> lines{"./ls_test_temp_dir:", "./ls_test_temp_dir/3", "./ls_test_temp_dir/1"};
+        std::set<std::string> lines{"./ls_test_temp_dir:", "3", "1"};
         std::set<std::string> true_lines;
         std::stringstream ss(outputChannel.read());
         std::string current_line;

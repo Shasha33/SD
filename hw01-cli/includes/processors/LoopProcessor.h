@@ -19,13 +19,20 @@ public:
     Response process(
             const std::string &s,
             Environment &environment,
-            FileTreeState& fileTreeState
+            FileTreeState &fileTreeState
     ) override;
 
     ~LoopProcessor() override;
 
+protected:
+    Response process(
+            const std::string &s,
+            Environment &environment
+    );
+
 private:
-    static Token removeOuterQuotes(const Token& token);
+    static Token removeOuterQuotes(const Token &token);
+
 private:
     ITokenizer *tokenizer;
     ITokenizer *shortTermTokenizer;
