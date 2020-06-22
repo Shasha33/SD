@@ -12,6 +12,7 @@ public:
 
     std::string getHome() const;
     void changeCurrentDirectory(const std::string& dir);
+    std::string getPossibleNewDirectory(const std::string& dir);
     void changeCurrentDirectoryToHome();
     std::string getCurrentDirectory() const;
 

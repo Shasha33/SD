@@ -11,19 +11,23 @@ std::string FileTreeState::getCurrentDirectory() const {
 
 FileTreeState::FileTreeState() : homeDirectory(".") {}
 
-
-void FileTreeState::changeCurrentDirectory(const std::string& dir) {
-    if (currentDirectory.back() != '/') {
-        currentDirectory += '/';
+std::string FileTreeState::getPossibleNewDirectory(const std::string& dir) {
+    auto currentDirectoryCopy = currentDirectory;
+    if (currentDirectoryCopy.back() != '/') {
+        currentDirectoryCopy += '/';
     }
 
     if (dir[0] == '/') {
-        currentDirectory = dir;
+        currentDirectoryCopy = dir;
     } else {
-        currentDirectory += dir;
+        currentDirectoryCopy += dir;
     }
 
-    currentDirectory = std::filesystem::relative(currentDirectory, homeDirectory);
+    return std::filesystem::canonical(currentDirectoryCopy);
+}
+
+void FileTreeState::changeCurrentDirectory(const std::string& dir) {
+    currentDirectory = std::filesystem::absolute(getPossibleNewDirectory(dir));
 }
 
 FileTreeState::FileTreeState(const std::string& home) : homeDirectory(home) {}
