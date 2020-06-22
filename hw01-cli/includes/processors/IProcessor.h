@@ -14,7 +14,8 @@ public:
     // and process it using its own policy
     virtual Response process(
             const std::string &s,
-            Environment &environment
+            Environment &environment,
+            FileTreeState &fileTreeState
     ) = 0;
 
     virtual ~IProcessor() = default;

@@ -1,4 +1,5 @@
 #include <processors/LoopProcessor.h>
+#include "FileTreeState.h"
 #include <commands/CommandBuilder.h>
 #include <tokenizers/LinearTokenizer.h>
 #include <Substitutor.h>
@@ -6,12 +7,13 @@
 
 Response LoopProcessor::process(
         const std::string &s,
-        Environment &environment
+        Environment &environment,
+        FileTreeState& fileTreeState
 ) {
     tokenizer->clear();
     tokenizer->append(s);
 
-    CommandBuilder commandBuilder;
+    CommandBuilder commandBuilder(&fileTreeState);
     Status lastCommandStatus;
     StringChannel inputChannel, outputChannel;
 

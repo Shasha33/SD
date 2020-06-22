@@ -14,6 +14,8 @@
 // to the arguments part.
 class CommandBuilder {
 public:
+    CommandBuilder() = default;
+    CommandBuilder(FileTreeState* fileTreeState);
 
     // Add token to the end of token
     // sequence. If there are no any tokens
@@ -37,6 +39,7 @@ public:
 
 private:
     std::vector<Token> tokens;
+    FileTreeState* fileTreeState = nullptr;
 };
 
 

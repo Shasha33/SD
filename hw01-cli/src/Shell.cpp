@@ -9,7 +9,8 @@ int Shell::run() {
         std::getline(std::cin, input);
         Response response = processor->process(
                 input,
-                *environment
+                *environment,
+                *fileTreeState
         );
 
         StringChannel output = response.getStringChannel();
@@ -23,10 +24,12 @@ int Shell::run() {
 
 Shell::Shell() :
         processor(new LoopProcessor()),
-        environment(new Environment()) {
+        environment(new Environment()),
+        fileTreeState(new FileTreeState()){
 }
 
 Shell::~Shell() {
+    delete fileTreeState;
     delete processor;
     delete environment;
 }

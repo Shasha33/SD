@@ -21,7 +21,9 @@ Environment::Environment()
           wcExecutor(new WCExecutor()),
           externalExecutor(new ExternalExecutor()),
           emptyExecutor(new EmptyExecutor()),
-          grepExecutor(new GrepExecutor()) {
+          grepExecutor(new GrepExecutor()),
+          lsExecutor(new LSExecutor()),
+          cdExecutor(new CDExecutor()) {
     factory.registerExecutor(CommandName("echo"), echoExecutor);
     factory.registerExecutor(CommandName("exit"), exitExecutor);
     factory.registerExecutor(CommandName("cat"), catExecutor);
@@ -29,6 +31,8 @@ Environment::Environment()
     factory.registerExecutor(CommandName("wc"), wcExecutor);
     factory.registerExecutor(CommandName(""), emptyExecutor);
     factory.registerExecutor(CommandName("grep"), grepExecutor);
+    factory.registerExecutor(CommandName("ls"), lsExecutor);
+    factory.registerExecutor(CommandName("cd"), cdExecutor);
 }
 
 void Environment::setVariableValue(const std::string &variableName, const std::string &variableValue) {

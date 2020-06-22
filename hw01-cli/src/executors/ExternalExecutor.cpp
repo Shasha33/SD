@@ -18,6 +18,7 @@ Status ExternalExecutor::execute(
     std::error_code errorCode;
     bp::child childProcess(
             command.asString(),
+            bp::start_dir(command.getFileTreeState()->getCurrentDirectory()),
             errorCode,
             bp::std_out > out_ipstream,
             bp::std_err > err_ipstream,

@@ -19,6 +19,7 @@ public:
 private:
     IProcessor *processor;
     Environment *environment;
+    FileTreeState* fileTreeState;
 };
 
 

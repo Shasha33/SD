@@ -9,7 +9,7 @@ Status PWDExecutor::execute(
 
     using namespace std::experimental::filesystem;
 
-    outputStream.write(absolute(current_path()));
+    outputStream.write(absolute(command.getFileTreeState()->getCurrentDirectory()));
     outputStream.write("\n");
 
     return Status();
