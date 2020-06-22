@@ -17,7 +17,8 @@ Status LSExecutor::execute(
             if (argument.getTokenType() != TokenType::LITERAL) {
                 continue;
             }
-            printOneDirectory(argument.asString(), outputStream);
+            auto absolutePath = command.getFileTreeState()->getPossibleNewDirectory(argument.asString());
+            printOneDirectory(absolutePath, outputStream, command.getFileTreeState()->getCurrentDirectory());
         }
     } else {
         const std::string currentDirectory = command.getFileTreeState()->getCurrentDirectory();
@@ -27,11 +28,19 @@ Status LSExecutor::execute(
     return Status();
 }
 
-void LSExecutor::printOneDirectory(const std::experimental::filesystem::path& path, StringChannel &outputStream) const {
-    outputStream.write(path.string() + ":\n");
+void LSExecutor::printOneDirectory(const std::experimental::filesystem::path &path,
+                                   StringChannel &outputStream,
+                                   const std::experimental::filesystem::path &homeDirectory
+) const {
+    outputStream.write(std::filesystem::relative(path.string(), homeDirectory.string()).string() + ":\n");
     for (const auto &entry : std::experimental::filesystem::directory_iterator(path)) {
         auto filepath = std::filesystem::relative(entry.path().string(), path.string());
         outputStream.write(filepath.string() + "\n");
     }
+}
+
+void LSExecutor::printOneDirectory(const std::experimental::filesystem::path &path,
+                                   StringChannel &outputStream) const {
+    printOneDirectory(path, outputStream, path);
 }
 

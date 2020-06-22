@@ -4,8 +4,8 @@
 #include <experimental/filesystem>
 #include <executors/ICommandExecutor.h>
 
-/// Implementation of ls command
-/*
+/** Implementation of ls command
+ *
  *  Prints given directory or current directory into
  *  output channel
  */
@@ -18,7 +18,14 @@ public:
     ) const override;
 
 private:
-    void printOneDirectory(const std::experimental::filesystem::path& path, StringChannel &outputStream) const;
+    void printOneDirectory(const std::experimental::filesystem::path &path,
+                           StringChannel &outputStream,
+                           const std::experimental::filesystem::path &homeDirectory
+    ) const;
+
+    void printOneDirectory(const std::experimental::filesystem::path &path,
+                           StringChannel &outputStream
+    ) const;
 };
 
 
